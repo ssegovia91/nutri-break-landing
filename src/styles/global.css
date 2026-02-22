@@ -6,6 +6,11 @@ html {
   scroll-behavior: smooth;
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 .nav-link {
   position: relative;
   padding-bottom: 4px;
