@@ -1,0 +1,161 @@
+---
+const slides = [
+  {
+    title: "Coffee breaks nutritivos para eventos académicos y empresariales",
+    image: "/hero/slide-1.jpeg",
+  },
+  {
+    title: "Bienestar, energía y sabor para universidades, gobierno y empresas.",
+    image: "/hero/slide-2.jpg",
+  },
+  {
+    title: "Opciones saludables diseñadas para largas jornadas de trabajo y estudio.",
+    image: "/hero/slide-3.jpeg",
+  },
+];
+---
+
+<section
+  id="hero"
+  class="relative min-h-screen w-full flex items-center justify-center bg-cover bg-center transition-all duration-700"
+>
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/40"></div>
+
+  <!-- Contenido -->
+  <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+
+    <!-- Carrusel -->
+    <div class="relative overflow-hidden">
+
+      <div
+        id="carousel"
+        class="flex transition-transform duration-700 ease-in-out select-none touch-pan-y"
+      >
+        {slides.map((slide) => (
+          <div
+            class="min-w-full flex justify-center"
+            data-bg={slide.image}
+          >
+            <div class="bg-white/90 backdrop-blur rounded-2xl shadow-xl p-10 max-w-xl">
+              <h2 class="text-3xl md:text-4xl font-bold text-primary">
+                {slide.title}
+              </h2>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Flechas -->
+      <button
+        id="prev"
+        class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-md rounded-full w-12 h-12 hidden md:flex items-center justify-center"
+      >
+        ‹
+      </button>
+
+      <button
+        id="next"
+        class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-md rounded-full w-12 h-12 hidden md:flex items-center justify-center"
+      >
+        ›
+      </button>
+
+    </div>
+
+    <!-- Indicadores -->
+    <div class="flex justify-center gap-3 mt-8">
+      {slides.map((_, index) => (
+        <button
+          class="w-3 h-3 rounded-full bg-white/50"
+          data-dot={index}
+        ></button>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-10">
+      <a
+        href="#reserva"
+        class="inline-block bg-accent text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary transition"
+      >
+        Reservar Nutri-Break
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  let index = 0;
+  const slides = [
+    "/hero/slide-1.jpeg",
+    "/hero/slide-2.jpg",
+    "/hero/slide-3.jpeg",
+  ];
+
+  const hero = document.getElementById("hero");
+  const carousel = document.getElementById("carousel");
+  const dots = document.querySelectorAll("[data-dot]");
+  const total = slides.length;
+
+  const prevBtn = document.getElementById("prev");
+  const nextBtn = document.getElementById("next");
+
+  function updateCarousel() {
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+
+    // 👉 AQUÍ se aplica la imagen
+    hero.style.backgroundImage = `url(${slides[index]})`;
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("bg-primary", i === index);
+      dot.classList.toggle("bg-white/50", i !== index);
+    });
+  }
+
+  nextBtn?.addEventListener("click", () => {
+    index = (index + 1) % total;
+    updateCarousel();
+  });
+
+  prevBtn?.addEventListener("click", () => {
+    index = (index - 1 + total) % total;
+    updateCarousel();
+  });
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      index = Number(dot.dataset.dot);
+      updateCarousel();
+    });
+  });
+
+  // Swipe
+  let startX = 0;
+  let endX = 0;
+
+  carousel.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+  });
+
+  carousel.addEventListener("touchmove", (e) => {
+    endX = e.touches[0].clientX;
+  });
+
+  carousel.addEventListener("touchend", () => {
+    const diff = startX - endX;
+    if (diff > 50) index = (index + 1) % total;
+    if (diff < -50) index = (index - 1 + total) % total;
+    updateCarousel();
+  });
+
+  // Autoplay
+  setInterval(() => {
+    index = (index + 1) % total;
+    updateCarousel();
+  }, 6000);
+
+  // Inicial
+  updateCarousel();
+</script>

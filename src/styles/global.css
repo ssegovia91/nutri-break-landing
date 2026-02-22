@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+.nav-link {
+  position: relative;
+  padding-bottom: 4px;
+  color: #374151; /* gray-700 */
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #111827; /* gray-900 */
+}
+
+/* Línea inferior */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 3px;
+  background-color: #f2b8c6; /* rosa crema tipo logo */
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+/* Activo */
+.nav-link.active {
+  color: #111827;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}

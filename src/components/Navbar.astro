@@ -1,0 +1,85 @@
+<nav class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur z-50 shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-3">
+      <img src="/icons/logo-nutri-break.jpg" alt="Nutri-Break" class="h-8" />
+    </div>
+
+    <!-- Botón hamburguesa (solo móvil) -->
+    <button
+      id="menu-btn"
+      class="md:hidden text-2xl focus:outline-none"
+      aria-label="Abrir menú"
+    >
+      ☰
+    </button>
+
+    <!-- Links desktop -->
+    <ul class="hidden md:flex gap-8 text-sm font-medium">
+      <li><a href="#hero" class="nav-link">Inicio</a></li>
+      <li><a href="#elegirnos" class="nav-link">Por qué elegirnos</a></li>
+      <li><a href="#paquetes" class="nav-link">Paquetes</a></li>
+      <li><a href="#menu" class="nav-link">Menú</a></li>
+      <li><a href="#reserva" class="nav-link">Reserva</a></li>
+      <li><a href="#contacto" class="nav-link">Contacto</a></li>
+    </ul>
+  </div>
+
+  <!-- Menú móvil -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden bg-white border-t shadow-sm"
+  >
+    <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium">
+      <li><a href="#hero" class="nav-link mobile-link">Inicio</a></li>
+      <li><a href="#elegirnos" class="nav-link mobile-link">Por qué elegirnos</a></li>
+      <li><a href="#paquetes" class="nav-link mobile-link">Paquetes</a></li>
+      <li><a href="#menu" class="nav-link mobile-link">Menú</a></li>
+      <li><a href="#reserva" class="nav-link mobile-link">Reserva</a></li>
+      <li><a href="#contacto" class="nav-link mobile-link">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+  // Toggle menú móvil
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+
+  // Cerrar menú al hacer click en link móvil
+  document.querySelectorAll(".mobile-link").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+    });
+  });
+
+  // Scroll spy
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  function activateLink() {
+    let scrollY = window.pageYOffset;
+
+    sections.forEach((section) => {
+      const sectionHeight = section.offsetHeight;
+      const sectionTop = section.offsetTop - 90;
+      const sectionId = section.getAttribute("id");
+
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${sectionId}`) {
+            link.classList.add("active");
+          }
+        });
+      }
+    });
+  }
+
+  window.addEventListener("scroll", activateLink);
+</script>

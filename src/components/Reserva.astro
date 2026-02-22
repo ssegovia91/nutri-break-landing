@@ -1,0 +1,140 @@
+<section id="reserva" class="py-24 bg-cream">
+  <div class="max-w-3xl mx-auto px-6">
+
+    <!-- Título -->
+    <h2 class="text-3xl md:text-4xl font-bold text-primary text-center mb-4">
+      Reserva tu Nutri-Break
+    </h2>
+
+    <p class="text-center text-gray-600 mb-12">
+      Completa el formulario para recibir tu cotización en 24 horas
+    </p>
+
+    <!-- Formulario -->
+    <form class="bg-white rounded-2xl shadow-lg p-8 space-y-6">
+
+      <!-- Nombre -->
+      <div>
+        <label class="block text-sm font-medium text-dark mb-1">
+          Nombre completo
+        </label>
+        <input
+          type="text"
+          placeholder="Ej. María López"
+          class="w-full rounded-lg border border-gray-300 px-4 py-3
+                 focus:outline-none focus:ring-2 focus:ring-accent"
+        />
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="block text-sm font-medium text-dark mb-1">
+          Email
+        </label>
+        <input
+          type="email"
+          placeholder="correo@ejemplo.com"
+          class="w-full rounded-lg border border-gray-300 px-4 py-3
+                 focus:outline-none focus:ring-2 focus:ring-accent"
+        />
+      </div>
+
+      <!-- Teléfono -->
+      <div>
+        <label class="block text-sm font-medium text-dark mb-1">
+          Teléfono
+        </label>
+        <input
+          type="tel"
+          placeholder="Ej. 618 123 4567"
+          class="w-full rounded-lg border border-gray-300 px-4 py-3
+                 focus:outline-none focus:ring-2 focus:ring-accent"
+        />
+      </div>
+
+      <!-- Fecha evento -->
+      <div>
+        <label class="block text-sm font-medium text-dark mb-1">
+          Fecha del evento
+        </label>
+        <input
+          type="date"
+          class="w-full rounded-lg border border-gray-300 px-4 py-3
+                 focus:outline-none focus:ring-2 focus:ring-accent"
+        />
+      </div>
+
+      <!-- Número personas -->
+      <div>
+        <label class="block text-sm font-medium text-dark mb-1">
+          Número de personas
+        </label>
+        <input
+          type="number"
+          min="1"
+          placeholder="Ej. 50"
+          class="w-full rounded-lg border border-gray-300 px-4 py-3
+                 focus:outline-none focus:ring-2 focus:ring-accent"
+        />
+      </div>
+
+      <!-- Paquete -->
+      <div>
+        <label class="block text-sm font-medium text-dark mb-1">
+          Paquete de interés
+        </label>
+        <select
+          class="w-full rounded-lg border border-gray-300 px-4 py-3
+                 focus:outline-none focus:ring-2 focus:ring-accent"
+        >
+          <option value="">Selecciona un paquete</option>
+          <option>Wellness Basic</option>
+          <option>Wellness Pro</option>
+          <option>Wellness Premium</option>
+        </select>
+      </div>
+
+      <!-- Tipo evento -->
+      <div>
+        <label class="block text-sm font-medium text-dark mb-1">
+          Tipo de evento
+        </label>
+        <select
+          class="w-full rounded-lg border border-gray-300 px-4 py-3
+                 focus:outline-none focus:ring-2 focus:ring-accent"
+        >
+          <option value="">Selecciona una opción</option>
+          <option>Reunión académica</option>
+          <option>Conferencia</option>
+          <option>Seminario</option>
+          <option>Taller</option>
+          <option>Sesión de estudio grupal</option>
+          <option>Otro evento</option>
+        </select>
+      </div>
+
+      <!-- Requisitos -->
+      <div>
+        <label class="block text-sm font-medium text-dark mb-1">
+          Requisitos especiales
+        </label>
+        <textarea
+          rows="4"
+          placeholder="Ej. opciones veganas, sin gluten, horarios especiales..."
+          class="w-full rounded-lg border border-gray-300 px-4 py-3
+                 focus:outline-none focus:ring-2 focus:ring-accent"
+        ></textarea>
+      </div>
+
+      <!-- Botón -->
+      <button
+        type="button"
+        class="w-full bg-primary text-white py-4 rounded-xl
+               font-semibold hover:bg-accent transition"
+      >
+        Enviar solicitud
+      </button>
+
+    </form>
+  </div>
+</section>
