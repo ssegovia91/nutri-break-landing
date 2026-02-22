@@ -15,8 +15,8 @@
 
       <!-- Wellness Basic -->
       <div class="bg-white rounded-2xl shadow-md p-8 flex flex-col">
-        <h3 class="text-2xl font-semibold text-primary mb-2">
-          Wellness Basic
+        <h3 class="text-2xl font-semibold text-primary mb-2 flex items-center gap-2">
+            🌿 Wellness Basic
         </h3>
 
         <p class="text-3xl font-bold text-dark mb-6">
@@ -31,7 +31,8 @@
         </ul>
 
         <button
-          class="mt-auto w-full border-2 border-primary text-primary
+            data-paquete="Wellness Basic"
+            class="seleccionar-paquete mt-auto w-full border-2 border-primary text-primary
                  py-3 rounded-xl font-semibold hover:bg-primary
                  hover:text-white transition"
         >
@@ -41,8 +42,8 @@
 
       <!-- Wellness Pro -->
       <div class="bg-white rounded-2xl shadow-xl p-8 flex flex-col ring-2 ring-accent">
-        <h3 class="text-2xl font-semibold text-primary mb-2">
-          Wellness Pro
+        <h3 class="text-2xl font-semibold text-primary mb-2 flex items-center gap-2">
+            ⭐ Wellness Pro
         </h3>
 
         <p class="text-3xl font-bold text-dark mb-6">
@@ -58,7 +59,8 @@
         </ul>
 
         <button
-          class="mt-auto w-full bg-accent text-white py-3 rounded-xl
+            data-paquete="Wellness Pro"
+            class="seleccionar-paquete mt-auto w-full bg-accent text-white py-3 rounded-xl
                  font-semibold hover:bg-primary transition"
         >
           Seleccionar paquete
@@ -67,8 +69,8 @@
 
       <!-- Wellness Premium -->
       <div class="bg-white rounded-2xl shadow-md p-8 flex flex-col">
-        <h3 class="text-2xl font-semibold text-primary mb-2">
-          Wellness Premium
+        <h3 class="text-2xl font-semibold text-primary mb-2 flex items-center gap-2">
+            👑 Wellness Premium
         </h3>
 
         <p class="text-3xl font-bold text-dark mb-6">
@@ -85,7 +87,8 @@
         </ul>
 
         <button
-          class="mt-auto w-full border-2 border-primary text-primary
+            data-paquete="Wellness Premium"
+            class="seleccionar-paquete mt-auto w-full border-2 border-primary text-primary
                  py-3 rounded-xl font-semibold hover:bg-primary
                  hover:text-white transition"
         >
@@ -96,3 +99,20 @@
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll(".seleccionar-paquete").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const paquete = btn.getAttribute("data-paquete");
+      const reservaSection = document.getElementById("reserva");
+      if (reservaSection) {
+        reservaSection.scrollIntoView({ behavior: "smooth" });
+      }
+      // Guardar en sessionStorage para que Reserva.astro lo lea
+      sessionStorage.setItem("paqueteSeleccionado", paquete);
+      // Intentar setear el select si ya está en el DOM
+      const select = document.querySelector("#paquete-select");
+      if (select) select.value = paquete;
+    });
+  });
+</script>
