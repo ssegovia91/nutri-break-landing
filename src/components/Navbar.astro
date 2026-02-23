@@ -1,15 +1,15 @@
-<nav class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur z-50 shadow-sm overflow-x-hidden">
+<nav class="fixed top-0 left-0 w-full bg-secondary/95 backdrop-blur z-50 shadow-md overflow-x-hidden">
   <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
 
     <!-- Logo -->
     <div class="flex items-center gap-3">
-      <img src="/icons/logo-nutri-break.jpg" alt="Nutri-Break" class="h-8" />
+      <img src="/logo/logo-nutri-break-white.jpg" alt="Nutri-Break" class="h-14" />
     </div>
 
     <!-- Botón hamburguesa (solo móvil) -->
     <button
       id="menu-btn"
-      class="md:hidden text-2xl focus:outline-none p-0 m-0"
+      class="md:hidden text-2xl text-white focus:outline-none p-0 m-0"
       aria-label="Abrir menú"
     >
       ☰
@@ -17,28 +17,28 @@
 
     <!-- Links desktop -->
     <ul class="hidden md:flex gap-8 text-sm font-medium">
-      <li><a href="#hero" class="nav-link">Inicio</a></li>
-      <li><a href="#elegirnos" class="nav-link">Por qué elegirnos</a></li>
-      <li><a href="#paquetes" class="nav-link">Paquetes</a></li>
-      <li><a href="#menu" class="nav-link">Menú</a></li>
-      <li><a href="#reserva" class="nav-link">Reserva</a></li>
-      <li><a href="#contacto" class="nav-link">Contacto</a></li>
+      <li><a href="#hero" class="nav-link">INICIO</a></li>
+      <li><a href="#elegirnos" class="nav-link">NOSOTROS</a></li>
+      <li><a href="#paquetes" class="nav-link">PAQUETES</a></li>
+      <li><a href="#menu" class="nav-link">MENU</a></li>
+      <li><a href="#reserva" class="nav-link">RESERVA</a></li>
+      <li><a href="#contacto" class="nav-link">CONTACTO</a></li>
     </ul>
   </div>
 
   <!-- Menú móvil -->
   <div
     id="mobile-menu"
-    class="md:hidden hidden bg-white border-t shadow-sm"
+    class="md:hidden hidden bg-secondary border-t border-white/10 shadow-lg"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <ul class="flex flex-col py-4 gap-4 text-sm font-medium">
-        <li><a href="#hero" class="nav-link mobile-link">Inicio</a></li>
-        <li><a href="#elegirnos" class="nav-link mobile-link">Por qué elegirnos</a></li>
-        <li><a href="#paquetes" class="nav-link mobile-link">Paquetes</a></li>
-        <li><a href="#menu" class="nav-link mobile-link">Menú</a></li>
-        <li><a href="#reserva" class="nav-link mobile-link">Reserva</a></li>
-        <li><a href="#contacto" class="nav-link mobile-link">Contacto</a></li>
+        <li><a href="#hero" class="nav-link mobile-link">INICIO</a></li>
+        <li><a href="#elegirnos" class="nav-link mobile-link">NOSOTROS</a></li>
+        <li><a href="#paquetes" class="nav-link mobile-link">PAQUETES</a></li>
+        <li><a href="#menu" class="nav-link mobile-link">MENU</a></li>
+        <li><a href="#reserva" class="nav-link mobile-link">RESERVA</a></li>
+        <li><a href="#contacto" class="nav-link mobile-link">CONTACTO</a></li>
       </ul>
     </div>
   </div>
@@ -84,4 +84,12 @@
   }
 
   window.addEventListener("scroll", activateLink);
+
+  const nav = document.querySelector("nav");
+
+  window.addEventListener("scroll", () => {
+    nav.classList.toggle("shadow-xl", window.scrollY > 10);
+  });
+
+  activateLink();
 </script>

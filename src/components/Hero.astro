@@ -1,94 +1,112 @@
 ---
 const slides = [
+  {    
+    image: "/hero/slide-0.jpeg",
+  },
   {
     title: "Coffee breaks nutritivos para eventos académicos y empresariales",
     image: "/hero/slide-1.jpeg",
+    textColor: "text-primary"
   },
   {
     title: "Bienestar, energía y sabor para universidades, gobierno y empresas.",
     image: "/hero/slide-2.jpg",
+    textColor: "text-purple-600",   // morado
   },
   {
     title: "Opciones saludables diseñadas para largas jornadas de trabajo y estudio.",
     image: "/hero/slide-3.jpeg",
+    textColor: "text-energy-orange",
   },
 ];
 ---
 
 <section
   id="hero"
-  class="relative min-h-screen w-full flex items-center justify-center bg-cover bg-center transition-all duration-700"
+  class="relative h-screen w-full bg-cover bg-center transition-all duration-700 overflow-hidden"
 >
   <!-- Overlay -->
-  <div class="absolute inset-0 bg-black/40"></div>
+  <div
+    id="overlay"
+    class="absolute inset-0 bg-black/40 transition-opacity duration-700"
+  ></div>
 
-  <!-- Contenido -->
-  <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+  <!-- Contenido (NO afecta el background) -->
+  <div class="absolute inset-0 z-10 flex items-center justify-center">
+    <div class="max-w-4xl mx-auto px-6 text-center">
 
-    <!-- Carrusel -->
-    <div class="relative overflow-hidden">
-
-      <div
-        id="carousel"
-        class="flex transition-transform duration-700 ease-in-out select-none touch-pan-y"
-      >
-        {slides.map((slide) => (
-          <div
-            class="min-w-full flex justify-center"
-            data-bg={slide.image}
+      <!-- Carrusel -->
+      <div class="relative overflow-hidden">
+        <div
+          id="carousel"
+          class="flex transition-transform duration-700 ease-in-out select-none touch-pan-y"
+        >
+          {slides.map((slide) => (
+  <div class="min-w-full flex justify-center items-center">
+    <div class="hero-card-wrapper">
+      {slide.title && (
+        <div
+          class={`hero-card bg-white/90 backdrop-blur rounded-2xl shadow-xl p-10 max-w-xl
+                  ring-4 ring-blue`}
+        >
+          <h2
+            class={`text-3xl md:text-4xl font-bold ${slide.textColor}`}
           >
-            <div class="bg-white/90 backdrop-blur rounded-2xl shadow-xl p-10 max-w-xl">
-              <h2 class="text-3xl md:text-4xl font-bold text-primary">
-                {slide.title}
-              </h2>
-            </div>
-          </div>
+            {slide.title}
+          </h2>
+        </div>
+      )}
+    </div>
+  </div>
+))}
+        </div>
+
+        <!-- Flechas -->
+        <button
+          id="prev"
+          class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-md rounded-full w-12 h-12 hidden md:flex items-center justify-center"
+        >
+          ‹
+        </button>
+
+        <button
+          id="next"
+          class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-md rounded-full w-12 h-12 hidden md:flex items-center justify-center"
+        >
+          ›
+        </button>
+      </div>
+
+      <!-- Indicadores -->
+      <div class="flex justify-center gap-3 mt-8">
+        {slides.map((_, index) => (
+          <button
+            class="w-3 h-3 rounded-full bg-white/50"
+            data-dot={index}
+          ></button>
         ))}
       </div>
 
-      <!-- Flechas -->
-      <button
-        id="prev"
-        class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-md rounded-full w-12 h-12 hidden md:flex items-center justify-center"
-      >
-        ‹
-      </button>
-
-      <button
-        id="next"
-        class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-md rounded-full w-12 h-12 hidden md:flex items-center justify-center"
-      >
-        ›
-      </button>
+      <!-- CTA -->
+      <div class="mt-10">
+        <a
+          href="#reserva"
+          class="inline-block bg-[#6B4A2D] text-white px-8 py-4 rounded-lg font-semibold
+          hover:bg-[#4A6F4D] transition-colors duration-300 shadow-md"
+        >
+          Reservar Nutri-Break
+        </a>
+      </div>
 
     </div>
-
-    <!-- Indicadores -->
-    <div class="flex justify-center gap-3 mt-8">
-      {slides.map((_, index) => (
-        <button
-          class="w-3 h-3 rounded-full bg-white/50"
-          data-dot={index}
-        ></button>
-      ))}
-    </div>
-
-    <!-- CTA -->
-    <div class="mt-10">
-      <a
-        href="#reserva"
-        class="inline-block bg-accent text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary transition"
-      >
-        Reservar Nutri-Break
-      </a>
-    </div>
-
   </div>
 </section>
 
 <script>
   let index = 0;
-  const slides = [
+
+  const slides  = [
+    "/hero/slide-0.jpg",
     "/hero/slide-1.jpeg",
     "/hero/slide-2.jpg",
     "/hero/slide-3.jpeg",
@@ -101,18 +119,26 @@ const slides = [
 
   const prevBtn = document.getElementById("prev");
   const nextBtn = document.getElementById("next");
+  const overlay = document.getElementById("overlay");
 
   function updateCarousel() {
-    carousel.style.transform = `translateX(-${index * 100}%)`;
+  carousel.style.transform = `translateX(-${index * 100}%)`;
 
-    // 👉 AQUÍ se aplica la imagen
-    hero.style.backgroundImage = `url(${slides[index]})`;
+  hero.style.backgroundImage = `url(${slides[index]})`;
+  hero.style.backgroundSize = "cover";
+  hero.style.backgroundPosition = "center";
+  hero.style.backgroundRepeat = "no-repeat";
 
-    dots.forEach((dot, i) => {
-      dot.classList.toggle("bg-primary", i === index);
-      dot.classList.toggle("bg-white/50", i !== index);
-    });
-  }
+  overlay.className =
+    index === 0
+      ? "absolute inset-0 bg-black/10 transition-opacity duration-700"
+      : "absolute inset-0 bg-black/40 transition-opacity duration-700";
+
+  dots.forEach((dot, i) => {
+    dot.classList.toggle("bg-primary", i === index);
+    dot.classList.toggle("bg-white/50", i !== index);
+  });
+}
 
   nextBtn?.addEventListener("click", () => {
     index = (index + 1) % total;
